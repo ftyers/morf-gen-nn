@@ -9,7 +9,7 @@ Mostly hacked from WordReverser
 
 """
 
-import sys, math, numpy;
+import sys, math, numpy, operator;
 
 from theano import tensor
 
@@ -216,12 +216,12 @@ def _is_nan(log): #{
 #}
 
 def generate(m, input_): #{
-	print('@generate()', input_);
 	samples, = VariableFilter(applications=[m.generator.generate], name="outputs")(ComputationGraph(generated[1]))
 	# NOTE: this will recompile beam search functions every time user presses Enter. Do not create
 	# a new `BeamSearch` object every time if speed is important for you.
 	beam_search = BeamSearch(samples);
 	outputs, costs = beam_search.search({chars: input_}, Globals.char2code['</S>'], 3 * input_.shape[0]);
+	return outputs, costs;
 #}
 
 f_vocab = '';
@@ -265,21 +265,22 @@ for line in f_in.readlines(): #{
 	target = morph_lookup((encoded_input,))[0]	
 	print('Target:','→',target);	
 
-	input_arr = numpy.repeat(numpy.array(encoded_input)[:, None];
-	samples, costs = generate(m, input_arr,BEAM, axis=1));
+	input_arr = numpy.repeat(numpy.array(encoded_input)[:, None],BEAM, axis=1);
+	samples, costs = generate(m, input_arr);
 
 	messages = []
 	for sample, cost in equizip(samples, costs): #{
-		message = "({})".format(cost)
-		message += "".join(Globals.code2char[code] for code in sample)
+#		message = "({})".format(cost)
+		message = "".join(Globals.code2char[code] for code in sample)
 		if sample == target: #{
 			message += " CORRECT!"
 		#}
-		messages.append((cost, message))
-		messages.sort(key=operator.itemgetter(0), reverse=True)
-		for _, message in messages: #{
-			print(message)
-		#}
+		messages.append([float(cost), message])
+		#messages.sort(key=operator.itemgetter(0), reverse=True)
+	#}
+	messages.sort()
+	for message in messages[0:n_best]: #{
+		print(message[0], message[1])
 	#}
 
 #}
