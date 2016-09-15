@@ -94,8 +94,8 @@ class Globals: #{
 			in_string = in_string + ' ' + '</S>';
 			in_symbols.append(Globals.char2code['</S>']);
 
-			print(in_string,'→', in_symbols, file=sys.stderr);
-			print(out_string,'→', out_symbols, file=sys.stderr);
+#			print(in_string,'→', in_symbols, file=sys.stderr);
+#			print(out_string,'→', out_symbols, file=sys.stderr);
 
 			Globals.lookup[tuple(in_symbols)] = out_symbols;
 		#}
@@ -161,8 +161,8 @@ def _transpose(data): #{
 
 
 def _tokenise(s): #{
-	print('');
-	print('@_tokenise()', s.strip(), file=sys.stderr);
+#	print('');
+#	print('@_tokenise()', s.strip(), file=sys.stderr);
 	row = s.strip().replace('|||', '\t').split('\t');
 
 	in_string = '';
@@ -177,7 +177,7 @@ def _tokenise(s): #{
 #}
 
 def _encode(s): #{
-	print('@_encode():', s);
+#	print('@_encode():', s);
 	enc = [];
 	enc.append(Globals.char2code['<S>']);
 	for c in s.strip().split(' '): #{
@@ -198,10 +198,10 @@ def _decode(l): #{
 
 
 def morph_lookup(l): #{
-	print('@_morph_lookup()', l[0], file=sys.stderr);
+#	print('@_morph_lookup()', l[0], file=sys.stderr);
 	lkp = tuple(l[0]);
 	if lkp in Globals.lookup: #{
-		print('@_morph_lookup()', Globals.lookup[lkp], file=sys.stderr);
+#		print('@_morph_lookup()', Globals.lookup[lkp], file=sys.stderr);
 		return (Globals.lookup[lkp],);
 	else: #{
 		for x in Globals.lookup: #{
@@ -244,8 +244,8 @@ else: #{
 Globals.read_alphabet(f_vocab);
 Globals.read_lookup(f_test);
 
-print("Vocab:",Globals.char2code, file=sys.stderr);
-print("Test:",f_test,file=sys.stderr);
+#print("Vocab:",Globals.char2code, file=sys.stderr);
+#print("Test:",f_test,file=sys.stderr);
 
 m = MorphGen(100, len(Globals.char2code));
 
@@ -258,12 +258,14 @@ with open(f_model, 'rb') as f: #{
 #}
 
 f_in = open(f_test);
+total = 0.0;
+correct = 0.0;
 for line in f_in.readlines(): #{
 	inp = _tokenise(line);
 	encoded_input = _encode(inp);
-	print(inp,'→',encoded_input);	
+#	print(inp,'→',encoded_input, sys.stderr);	
 	target = morph_lookup((encoded_input,))[0]	
-	print('Target:','→',target);	
+#	print('Target:','→',target, sys.stderr);	
 
 	input_arr = numpy.repeat(numpy.array(encoded_input)[:, None],BEAM, axis=1);
 	samples, costs = generate(m, input_arr);
@@ -280,7 +282,11 @@ for line in f_in.readlines(): #{
 	#}
 	messages.sort()
 	for message in messages[0:n_best]: #{
-		print(message[0], message[1])
+		if 'CORRECT' in message[1]: #{
+			correct = correct + 1.0;
+		#}
+		print(correct/total, message[0], message[1], file=sys.stderr)
 	#}
 
 #}
+print('%.2f\t%.2f\t%.2f' % (correct/total, total, correct))
