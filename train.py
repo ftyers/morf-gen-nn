@@ -241,7 +241,7 @@ cg = ComputationGraph(cost);
 algo = GradientDescent(cost=cost, parameters=cg.parameters,step_rule=CompositeRule([StepClipping(10.0), Scale(0.01)]))
 
 max_length = chars.shape[0].copy(name="max_length")
-observables = [batch_size, max_length,algo.total_step_norm, algo.total_gradient_norm]
+observables = [batch_size, max_length,algo.total_step_norm, algo.total_gradient_norm, cost]
 
 # Construct the main loop and start training!
 average_monitoring = TrainingDataMonitoring(observables, prefix="average", every_n_batches=10)
