@@ -262,6 +262,7 @@ total = 0.0;
 correct = 0.0;
 for line in f_in.readlines(): #{
 	inp = _tokenise(line);
+	form = '|'.join(line.strip().split('|||')[1:]);
 	encoded_input = _encode(inp);
 #	print(inp,'→',encoded_input, sys.stderr);	
 	target = morph_lookup((encoded_input,))[0]	
@@ -269,6 +270,7 @@ for line in f_in.readlines(): #{
 
 	input_arr = numpy.repeat(numpy.array(encoded_input)[:, None],BEAM, axis=1);
 	samples, costs = generate(m, input_arr);
+	total = total + 1.0;
 
 	messages = []
 	for sample, cost in equizip(samples, costs): #{
@@ -285,8 +287,8 @@ for line in f_in.readlines(): #{
 		if 'CORRECT' in message[1]: #{
 			correct = correct + 1.0;
 		#}
-		print(correct/total, message[0], message[1], file=sys.stderr)
+		print('%.2f\t%.6f\t%s\t%s' % (correct/total*100.0, message[0], form, message[1]), file=sys.stderr)
 	#}
 
 #}
-print('%.2f\t%.2f\t%.2f' % (correct/total, total, correct))
+print('%.2f\t%.1f\t%.1f' % (correct/total*100, total, correct))

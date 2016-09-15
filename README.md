@@ -11,13 +11,22 @@ You need blocks and Theano.
 
 ### Input and output format:
 
-#### Vocabulary
+#### Vocabulary (symbol table)
+
+This is a tab-separated file with all the symbols you're going to use in your 
+input and a unique identifying integer. The `<S>`, `</S>` and `<UNK>` are 
+reserved symbols.
 
 ```
 2	c
 3	e
 4	а
 5	б
+37	<S>
+38	</S>
+39	<UNK>
+40	Animacy=Anim
+41	Animacy=Inan
 ```
 
 #### Training data
