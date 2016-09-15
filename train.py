@@ -30,6 +30,7 @@ from blocks.utils import dict_union
 from blocks.model import Model
 from blocks.graph import ComputationGraph
 from blocks.algorithms import (GradientDescent, Scale, StepClipping, CompositeRule)
+from blocks.algorithms import RMSProp
 from blocks.monitoring import aggregation
 from blocks.extensions import FinishAfter, Printing, Timing
 from blocks.extensions.saveload import Checkpoint
@@ -244,6 +245,7 @@ for brick in model.get_top_bricks(): #{
 cg = ComputationGraph(cost);
 
 algo = GradientDescent(cost=cost, parameters=cg.parameters,step_rule=CompositeRule([StepClipping(10.0), Scale(0.01)]))
+#algo = RMSProp(learning_rate=1.0, decay_rate=0.9)
 
 max_length = chars.shape[0].copy(name="max_length")
 observables = [batch_size, max_length,algo.total_step_norm, algo.total_gradient_norm, cost]
@@ -262,7 +264,7 @@ main_loop = MainLoop(
 		.add_condition(["after_batch"], _is_nan),
 		# Saving the model and the log separately is convenient,
 		# because loading the whole pickle takes quite some time.
-		Checkpoint(f_model, every_n_batches=5,save_separately=["model", "log"]),
+		Checkpoint(f_model, every_n_batches=10,save_separately=["model", "log"]),
 		Printing(every_n_batches=1)]);
 
 main_loop.run()

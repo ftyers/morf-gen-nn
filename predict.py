@@ -32,7 +32,6 @@ from blocks.graph import ComputationGraph
 from blocks.algorithms import (GradientDescent, Scale, StepClipping, CompositeRule)
 from blocks.monitoring import aggregation
 from blocks.extensions import FinishAfter, Printing, Timing
-from blocks.extensions.saveload import Checkpoint
 from blocks.extensions.monitoring import TrainingDataMonitoring
 from blocks.main_loop import MainLoop
 
@@ -124,7 +123,7 @@ class MorphGen(Initializable): #{
 		readout = Readout(
 			readout_dim=vocab_size,
 			source_names=[transition.apply.states[0],
-			attention.take_glimpses.outputs[0]],
+			atten.take_glimpses.outputs[0]],
 			emitter=SoftmaxEmitter(name="emitter"),
 			feedback_brick=LookupFeedback(vocab_size, dimen),
 			name="readout");
