@@ -31,6 +31,10 @@ reserved symbols.
 
 #### Training data
 
+The input format for forms and analyses is a three column table with either tab as a separator
+or `|||`. The first column is surface form, the second column is lemma and the third column is 
+morphological tags in `Feature=Value` pairs. Features are separated by a single `|` character.
+
 ```
 студентов|||студент|||POS=NOUN|Animacy=Anim|Case=Gen|Gender=Masc|Number=Plur
 студенты|||студент|||POS=NOUN|Animacy=Anim|Case=Nom|Gender=Masc|Number=Plur
