@@ -2,6 +2,12 @@
 
 ## Morphological generation with neural networks
 
+The whole thing is based on:
+
+https://github.com/mila-udem/blocks-examples/tree/master/reverse_words
+
+It has two scripts:
+
 * `train.py`: train a model for generating morphology
 * `predict.py`: run the model on a test corpus
 
