@@ -36,16 +36,14 @@ from blocks.extensions.saveload import Checkpoint
 from blocks.extensions.monitoring import TrainingDataMonitoring
 from blocks.main_loop import MainLoop
 
-##
+## These are imports which aren't used in train.py:
 
 from blocks.serialization import load_parameters
 from blocks.filter import VariableFilter
 from picklable_itertools.extras import equizip
 from blocks.search import BeamSearch
 
-
-
-
+## Keep stuff we want to refer to everywhere in its own class
 
 class Globals: #{
 
@@ -118,8 +116,11 @@ class MorphGen(Initializable): #{
 		fork.output_dims = [encoder.prototype.get_dim(name) for name in fork.input_names]
 
 		lookup = LookupTable(vocab_size, dimen)
-		transition = SimpleRecurrent(activation=Tanh(),dim=dimen, name="transition")
-		attention = SequenceContentAttention(state_names=transition.apply.states,attended_dim=2*dimen, match_dim=dimen, name="attention")
+
+		transition = SimpleRecurrent(dim=dimen, activation=Tanh(), name="transition")
+
+		atten = SequenceContentAttention(state_names=transition.apply.states,attended_dim=2*dimen, match_dim=dimen, name="attention")
+
 		readout = Readout(
 			readout_dim=vocab_size,
 			source_names=[transition.apply.states[0],
@@ -127,7 +128,8 @@ class MorphGen(Initializable): #{
 			emitter=SoftmaxEmitter(name="emitter"),
 			feedback_brick=LookupFeedback(vocab_size, dimen),
 			name="readout");
-		generator = SequenceGenerator(readout=readout, transition=transition, attention=attention,name="generator")
+
+		generator = SequenceGenerator(readout=readout, transition=transition, attention=atten,name="generator")
 	
 		self.lookup = lookup
 		self.fork = fork

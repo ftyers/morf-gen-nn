@@ -204,8 +204,13 @@ dataset = TextFile([f_train], **dataset_options)
 
 data_stream = dataset.get_example_stream()
 
+# Read examples and look up the right surface form
 data_stream = Mapping(data_stream, morph_lookup, add_sources=("targets",))
-data_stream = Batch(data_stream, iteration_scheme=ConstantScheme(10))
+
+# Read in 10 samples at a time
+data_stream = Batch(data_stream, iteration_scheme=ConstantScheme(10)) 
+
+# Pad the examples
 data_stream = Padding(data_stream)
 data_stream = Mapping(data_stream, _transpose)
 
