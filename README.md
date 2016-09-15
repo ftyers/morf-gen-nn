@@ -49,7 +49,7 @@ morphological tags in `Feature=Value` pairs. Features are separated by a single 
 Uses `training.txt` to train a model for `200` iterations and store the output in `russian.200.model`
 
 ```
-python3 morf-gen-nn/train.py vocab.tsv training.txt 200 russian.200.model
+python3 train.py vocab.tsv training.txt 200 russian.200.model
 ```
 
 
@@ -58,5 +58,5 @@ python3 morf-gen-nn/train.py vocab.tsv training.txt 200 russian.200.model
 Uses `russian.200.model` to generate the forms in `training.txt` with an _n_-best list of `10`.
 
 ```
-python3 morf-gen-nn/predict.py data/vocab.tsv data/test.txt 10 models/russian.200.model
+python3 predict.py vocab.tsv test.txt 10 russian.200.model
 ```

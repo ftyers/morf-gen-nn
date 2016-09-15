@@ -143,7 +143,6 @@ def _transpose(data): #{
 
 
 def _tokenise(s): #{
-	print('');
 	print('@_tokenise()', s.strip(), file=sys.stderr);
 	row = s.strip().replace('|||', '\t').split('\t');
 
@@ -159,10 +158,10 @@ def _tokenise(s): #{
 #}
 
 def morph_lookup(l): #{
-	print('@_morph_lookup()', l[0], file=sys.stderr);
+#	print('@_morph_lookup()', l[0], file=sys.stderr);
 	lkp = tuple(l[0]);
 	if lkp in Globals.lookup: #{
-		print('@_morph_lookup()', Globals.lookup[lkp], file=sys.stderr);
+#		print('@_morph_lookup()', Globals.lookup[lkp], file=sys.stderr);
 		return (Globals.lookup[lkp],);
 	else: #{
 		for x in Globals.lookup: #{
