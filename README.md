@@ -5,6 +5,10 @@
 * `train.py`: train a model for generating morphology
 * `predict.py`: run the model on a test corpus
 
+### Prerequisites
+
+You need blocks and Theano.
+
 ### Input and output format:
 
 #### Vocabulary
@@ -27,11 +31,16 @@
 
 #### Train: 
 
+Uses `training.txt` to train a model for `200` iterations and store the output in `russian.200.model`
+
 ```
-python3 morf-gen-nn/train.py data/vocab.tsv data/training.txt 200 models/russian.200.model
+python3 morf-gen-nn/train.py vocab.tsv training.txt 200 russian.200.model
 ```
 
+
 #### Predict:
+
+Uses `russian.200.model` to generate the forms in `training.txt` with an _n_-best list of `10`.
 
 ```
 python3 morf-gen-nn/predict.py data/vocab.tsv data/test.txt 10 models/russian.200.model
