@@ -46,7 +46,6 @@ class Globals: #{
 
 	def read_alphabet(path): #{
 		f = open(path);
-		vocab = f.readline().strip();
 		for line in f.readlines(): #{
 			row = line.strip().split('\t');
 			code = int(row[0]);
@@ -85,8 +84,8 @@ class Globals: #{
 			in_string = in_string + ' ' + '</S>';
 			in_symbols.append(Globals.char2code['</S>']);
 
-			print(in_string,'→', in_symbols, file=sys.stderr);
-			print(out_string,'→', out_symbols, file=sys.stderr);
+#			print(in_string,'→', in_symbols, file=sys.stderr);
+#			print(out_string,'→', out_symbols, file=sys.stderr);
 
 			Globals.lookup[tuple(in_symbols)] = out_symbols;
 		#}
@@ -144,7 +143,7 @@ def _transpose(data): #{
 
 
 def _tokenise(s): #{
-	print('@_tokenise()', s.strip(), file=sys.stderr);
+#	print('@_tokenise()', s.strip(), file=sys.stderr);
 	row = s.strip().replace('|||', '\t').split('\t');
 
 	in_string = '';
@@ -179,23 +178,26 @@ def _is_nan(log): #{
 f_vocab = '';
 f_train = '';
 f_model = '';
-n_batches = '';
+n_epochs = 5 ;
 
 if len(sys.argv) < 5: #{
-	print('train.py <vocab> <training> <nbatches> <model>');
+	print('train.py <vocab> <training> <nepochs> <model>');
 	sys.exit(-1);
 else: #{
 	f_vocab = sys.argv[1];
 	f_train = sys.argv[2];
-	n_batches = int(sys.argv[3]);
+	n_epochs = int(sys.argv[3]);
 	f_model = sys.argv[4];
 #}
 
+#print("Train:",f_train,file=sys.stderr);
+
 Globals.read_alphabet(f_vocab);
+
+#print("Vocab:",Globals.char2code, file=sys.stderr);
+
 Globals.read_lookup(f_train);
 
-print("Vocab:",Globals.char2code, file=sys.stderr);
-print("Train:",f_train,file=sys.stderr);
 
 m = MorphGen(100, len(Globals.char2code));
 
@@ -253,19 +255,22 @@ observables = [batch_size, max_length,algo.total_step_norm, algo.total_gradient_
 # Construct the main loop and start training!
 average_monitoring = TrainingDataMonitoring(observables, prefix="average", every_n_batches=10)
 
+checkpoint_after=n_epochs/5;
+#checkpoint_after=100;
 main_loop = MainLoop(
 	model=model, data_stream=data_stream, algorithm=algo,
             extensions=[
 		Timing(),
 		TrainingDataMonitoring(observables, after_batch=True),
 		average_monitoring,
-		FinishAfter(after_n_batches=n_batches)
+#		FinishAfter(after_n_batches=n_batches)
+		FinishAfter(after_n_epochs=n_epochs)
 		# This shows a way to handle NaN emerging during training: simply finish it.
 		.add_condition(["after_batch"], _is_nan),
 		# Saving the model and the log separately is convenient,
 		# because loading the whole pickle takes quite some time.
-		Checkpoint(f_model, every_n_batches=10,save_separately=["model", "log"]),
-		Printing(every_n_batches=1)]);
+		Checkpoint(f_model, every_n_epochs=1,save_separately=["model", "log"]),
+		Printing(every_n_batches=100)]);
 
 main_loop.run()
 

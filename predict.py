@@ -52,7 +52,6 @@ class Globals: #{
 
 	def read_alphabet(path): #{
 		f = open(path);
-		vocab = f.readline().strip();
 		for line in f.readlines(): #{
 			row = line.strip().split('\t');
 			code = int(row[0]);
@@ -243,9 +242,11 @@ else: #{
 #}
 
 Globals.read_alphabet(f_vocab);
-Globals.read_lookup(f_test);
+print("Vocab:",Globals.char2code, file=sys.stderr);
 
-#print("Vocab:",Globals.char2code, file=sys.stderr);
+Globals.read_lookup(f_test);
+print("Lookup size:", len(Globals.lookup), file=sys.stderr);
+
 #print("Test:",f_test,file=sys.stderr);
 
 m = MorphGen(100, len(Globals.char2code));
@@ -292,4 +293,4 @@ for line in f_in.readlines(): #{
 	#}
 
 #}
-print('%.2f\t%.1f\t%.1f' % (correct/total*100, total, correct))
+print('Accuracy: %.2f\t%.1f\t%.1f' % (correct/total*100, total, correct))
