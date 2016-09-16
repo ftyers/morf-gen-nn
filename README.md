@@ -52,17 +52,17 @@ morphological tags in `Feature=Value` pairs. Features are separated by a single 
 
 #### Train: 
 
-Uses `training.txt` to train a model for `200` iterations and store the output in `russian.200.model`
+Uses `training.txt` to train a model for `20` epochs and store the output in `russian.20.model`
 
 ```
-python3 train.py vocab.tsv training.txt 200 russian.200.model
+python3 train.py vocab.tsv training.txt 20 russian.20.model
 ```
 
 
 #### Predict:
 
-Uses `russian.200.model` to generate the forms in `training.txt` with an _n_-best list of `10`.
+Uses `russian.20.model` to generate the forms in `training.txt` with an _n_-best list of `10`.
 
 ```
-python3 predict.py vocab.tsv test.txt 10 russian.200.model
+python3 predict.py vocab.tsv test.txt 10 russian.20.model
 ```
