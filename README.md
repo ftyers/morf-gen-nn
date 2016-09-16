@@ -70,7 +70,7 @@ python3 predict.py vocab.tsv test.txt 10 russian.20.model
 ### Performance
 
 The code is slow, it takes around an hour to run 20 epochs, and then a lot more time to decode. But
-the accuracy is quite good. 97.99% over one run on the SigMorPhon shared task for Turkish (the winning 
+the accuracy is quite good. 98.49% over one run on the SigMorPhon shared task for Turkish (the winning 
 system got 98.93%).
 
 Time for training one model running 25 for epochs:
@@ -78,4 +78,14 @@ Time for training one model running 25 for epochs:
 real	74m10.590s
 user	73m37.860s
 sys	0m12.960s
+```
+
+Time for decoding the test set of 1,594 samples:
+
+```
+Accuracy: 98.49	1594.0	1570.0
+
+real	110m37.195s
+user	85m24.820s
+sys	0m6.544s
 ```
