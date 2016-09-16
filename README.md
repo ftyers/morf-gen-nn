@@ -66,3 +66,16 @@ Uses `russian.20.model` to generate the forms in `training.txt` with an _n_-best
 ```
 python3 predict.py vocab.tsv test.txt 10 russian.20.model
 ```
+
+### Performance
+
+The code is slow, it takes around an hour to run 20 epochs, and then a lot more time to decide. But
+the accuracy is quite good. 97.99% over one run on the SigMorPhon shared task for Turkish (the winning 
+system got 98.93%).
+
+Time for one running 25 epochs:
+```
+real	74m10.590s
+user	73m37.860s
+sys	0m12.960s
+```
