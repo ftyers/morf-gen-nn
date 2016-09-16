@@ -73,7 +73,7 @@ The code is slow, it takes around an hour to run 20 epochs, and then a lot more 
 the accuracy is quite good. 97.99% over one run on the SigMorPhon shared task for Turkish (the winning 
 system got 98.93%).
 
-Time for one running 25 epochs:
+Time for training one model running 25 for epochs:
 ```
 real	74m10.590s
 user	73m37.860s
