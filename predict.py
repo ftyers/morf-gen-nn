@@ -9,7 +9,7 @@ Mostly hacked from WordReverser
 
 """
 
-import sys, math, numpy, operator;
+import sys, math, numpy, operator, getopt;
 
 from theano import tensor
 

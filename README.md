@@ -37,6 +37,10 @@ reserved symbols.
 41	Animacy=Inan
 ```
 
+__Note:__ It seems like you need the vocabulary to be divisible by 10, so if you have some 
+vocabulary size that is not, then you probably need to pad it with unique symbols. If you 
+don't, you'll get some weird errors from Theano.
+
 #### Training data
 
 The input format for forms and analyses is a three column table with either tab as a separator
@@ -94,18 +98,22 @@ Thats approximately 10 words/sec on a normal laptop.
 
 On Task 1 of the SIGMORPHON 2016 shared task:
 
-| Language | Accuracy | Winning system[1] | Relative | 
------------|----------|-------------------|----------|
-| Arabic   | 00.00    | 95.47             | -0.00    |
-| Finnish  | 00.00    | 96.80             | -0.00    |
-| Georgian | 00.00    | 98.50             | -0.00    |
-| German   | 00.00    | 95.80             | -0.00    |
-| Hungarian| 00.00    | 99.30             | -0.00    |
-| Maltese  | 00.00    | 88.99             | -0.00    |
-| Navajo   | 00.00    | 91.48             | -0.00    |
-| Russian  | 00.00    | 91.46             | -0.00    |
-| Spanish  | 00.00    | 98.84             | -0.00    |
-| Turkish  | 98.49    | 98.93             | -0.44    |
+| Language  | Accuracy | Winning system[1] | Relative | 
+------------|----------|-------------------|----------|
+| Arabic    | 00.00    | 95.47             | -0.00    |
+| Finnish   | 00.00    | 96.80             | -0.00    |
+| Georgian  | 97.51    | 98.50             | -0.99    |
+| German    | 00.00    | 95.80             | -0.00    |
+| Hungarian | 00.00    | 99.30             | -0.00    |
+| Maltese   | 00.00    | 88.99             | -0.00    |
+| Navajo    | 55.24    | 91.48             | -36.24   |
+| Russian   | 88.74    | 91.46             | -2.72    |
+| Spanish   | 98.50    | 98.84             | -0.34    |
+| Turkish   | 98.49    | 98.93             | -0.44    |
+
+* dev + train combined
+* _n_ epochs = 30
+* beam size = 10
 
 Ideas to improve performance:
 
