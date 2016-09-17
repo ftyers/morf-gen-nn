@@ -92,20 +92,22 @@ sys	0m6.544s
 
 ### Results
 
-On the Task 1 of the SigMorPhon 2016 shared task:
+On Task 1 of the SigMorPhon 2016 shared task:
 
-| Language | Accuracy | Compared to winning system | 
+| Language | Accuracy | Winning system  | Relative | 
 -----------|----------|----------------------------|
-| Arabic   | 00.00    | -0.00                      |
-| Finnish  | 00.00    | -0.00                      |
-| Georgian | 00.00    | -0.00                      |
-| German   | 00.00    | -0.00                      |
-| Hungarian| 00.00    | -0.00                      |
-| Maltese  | 00.00    | -0.00                      |
-| Navajo   | 00.00    | -0.00                      |
-| Russian  | 00.00    | -0.00                      |
-| Spanish  | 00.00    | -0.00                      |
-| Turkish  | 98.49    | -0.44                      |
+| Arabic   | 00.00    | 95.47           | -0.00    |
+| Finnish  | 00.00    | 96.80           | -0.00    |
+| Georgian | 00.00    | 98.50           | -0.00    |
+| German   | 00.00    | 95.80           | -0.00    |
+| Hungarian| 00.00    | 99.30           | -0.00    |
+| Maltese  | 00.00    | 88.99           | -0.00    |
+| Navajo   | 00.00    | 91.48           | -0.00    |
+| Russian  | 00.00    | 91.46           | -0.00    |
+| Spanish  | 00.00    | 98.84           | -0.00    |
+| Turkish  | 98.49    | 98.93           | -0.44    |
 
+Ideas to improve performance:
 
-
+* Use an ensemble of five models (like in the MED system)
+* Use character embeddings
