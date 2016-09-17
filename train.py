@@ -180,6 +180,9 @@ f_train = '';
 f_model = '';
 n_epochs = 5 ;
 
+# Maximum for my platform: 16100
+sys.setrecursionlimit(10000); 
+
 if len(sys.argv) < 5: #{
 	print('train.py <vocab> <training> <nepochs> <model>');
 	sys.exit(-1);
