@@ -2,9 +2,11 @@
 
 ## Morphological generation with neural networks
 
-The whole thing is based on:
+The whole thing is based on code from:
 
 https://github.com/mila-udem/blocks-examples/tree/master/reverse_words
+
+With inspiration from [1]
 
 It has two scripts:
 
@@ -90,22 +92,27 @@ Thats approximately 10 words/sec on a normal laptop.
 
 ### Results
 
-On Task 1 of the SigMorPhon 2016 shared task:
+On Task 1 of the SIGMORPHON 2016 shared task:
 
-| Language | Accuracy | Winning system  | Relative | 
------------|----------|-----------------|----------|
-| Arabic   | 00.00    | 95.47           | -0.00    |
-| Finnish  | 00.00    | 96.80           | -0.00    |
-| Georgian | 00.00    | 98.50           | -0.00    |
-| German   | 00.00    | 95.80           | -0.00    |
-| Hungarian| 00.00    | 99.30           | -0.00    |
-| Maltese  | 00.00    | 88.99           | -0.00    |
-| Navajo   | 00.00    | 91.48           | -0.00    |
-| Russian  | 00.00    | 91.46           | -0.00    |
-| Spanish  | 00.00    | 98.84           | -0.00    |
-| Turkish  | 98.49    | 98.93           | -0.44    |
+| Language | Accuracy | Winning system[1] | Relative | 
+-----------|----------|-------------------|----------|
+| Arabic   | 00.00    | 95.47             | -0.00    |
+| Finnish  | 00.00    | 96.80             | -0.00    |
+| Georgian | 00.00    | 98.50             | -0.00    |
+| German   | 00.00    | 95.80             | -0.00    |
+| Hungarian| 00.00    | 99.30             | -0.00    |
+| Maltese  | 00.00    | 88.99             | -0.00    |
+| Navajo   | 00.00    | 91.48             | -0.00    |
+| Russian  | 00.00    | 91.46             | -0.00    |
+| Spanish  | 00.00    | 98.84             | -0.00    |
+| Turkish  | 98.49    | 98.93             | -0.44    |
 
 Ideas to improve performance:
 
 * Use an ensemble of five models (like in the MED system)
 * Use character embeddings
+
+## References 
+
+1. Kann, K. and Schütze, H. (2016) "MED: The LMU system for the SIGMORPHON 2016 shared task on morphological reinflection". _Proceedings of the 2016 Meeting of SIGMORPHON_, Berlin, Germany. Association for Computational Linguistics
+
