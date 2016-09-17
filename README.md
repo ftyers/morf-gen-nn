@@ -96,7 +96,7 @@ On the Task 1 of the SigMorPhon 2016 shared task:
 
 | Language | Accuracy | Compared to winning system | 
 -----------|----------|----------------------------|
-<!--| Arabic   | 00.00    | -0.00                      |
+| Arabic   | 00.00    | -0.00                      |
 | Finnish  | 00.00    | -0.00                      |
 | Georgian | 00.00    | -0.00                      |
 | German   | 00.00    | -0.00                      |
@@ -104,7 +104,7 @@ On the Task 1 of the SigMorPhon 2016 shared task:
 | Maltese  | 00.00    | -0.00                      |
 | Navajo   | 00.00    | -0.00                      |
 | Russian  | 00.00    | -0.00                      |
-| Spanish  | 00.00    | -0.00                      |-->
+| Spanish  | 00.00    | -0.00                      |
 | Turkish  | 98.49    | -0.44                      |
 
 
