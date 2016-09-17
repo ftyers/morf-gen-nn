@@ -215,12 +215,8 @@ def _is_nan(log): #{
     return math.isnan(log.current_row['total_gradient_norm'])
 #}
 
-def generate(m, input_): #{
-	samples, = VariableFilter(applications=[m.generator.generate], name="outputs")(ComputationGraph(generated[1]))
-	# NOTE: this will recompile beam search functions every time user presses Enter. Do not create
-	# a new `BeamSearch` object every time if speed is important for you.
-	beam_search = BeamSearch(samples);
-	outputs, costs = beam_search.search({chars: input_}, Globals.char2code['</S>'], 3 * input_.shape[0]);
+def generate(m, input_, bs): #{
+	outputs, costs = bs.search({chars: input_}, Globals.char2code['</S>'], 3 * input_.shape[0]);
 	return outputs, costs;
 #}
 
@@ -262,6 +258,11 @@ with open(f_model, 'rb') as f: #{
 f_in = open(f_test);
 total = 0.0;
 correct = 0.0;
+samples, = VariableFilter(applications=[m.generator.generate], name="outputs")(ComputationGraph(generated[1]))
+# NOTE: this will recompile beam search functions every time user presses Enter. Do not create
+# a new `BeamSearch` object every time if speed is important for you.
+beam_search = BeamSearch(samples);
+
 for line in f_in.readlines(): #{
 	inp = _tokenise(line);
 	form = '|'.join(line.strip().split('|||')[1:]);
@@ -271,7 +272,7 @@ for line in f_in.readlines(): #{
 #	print('Target:','→',target, sys.stderr);	
 
 	input_arr = numpy.repeat(numpy.array(encoded_input)[:, None],BEAM, axis=1);
-	samples, costs = generate(m, input_arr);
+	samples, costs = generate(m, input_arr, beam_search);
 	total = total + 1.0;
 
 	messages = []
