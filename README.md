@@ -89,3 +89,14 @@ real	110m37.195s
 user	85m24.820s
 sys	0m6.544s
 ```
+
+### Results
+
+On the Task 1 of the SigMorPhon 2016 shared task:
+
+| Language | Accuracy | Compared to winning system | 
+-----------|----------|----------------------------|
+| Turkish  | 98.49    | -0.44                      |
+
+
+
