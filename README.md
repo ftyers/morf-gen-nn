@@ -93,7 +93,7 @@ Thats approximately 10 words/sec on a normal laptop.
 On Task 1 of the SigMorPhon 2016 shared task:
 
 | Language | Accuracy | Winning system  | Relative | 
------------|----------|----------------------------|
+-----------|----------|-----------------|----------|
 | Arabic   | 00.00    | 95.47           | -0.00    |
 | Finnish  | 00.00    | 96.80           | -0.00    |
 | Georgian | 00.00    | 98.50           | -0.00    |
