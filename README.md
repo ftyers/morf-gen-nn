@@ -103,7 +103,7 @@ On Task 1 of the SIGMORPHON 2016 shared task:
 | Arabic    | 00.00    | 95.47             | -0.00    |
 | Finnish   | 00.00    | 96.80             | -0.00    |
 | Georgian  | 97.51    | 98.50             | -0.99    |
-| German    | 00.00    | 95.80             | -0.00    |
+| German    | 94.48    | 95.80             | -1.32    |
 | Hungarian | 98.99    | 99.30             | -0.31    |
 | Maltese   | 00.00    | 88.99             | -0.00    |
 | Navajo    | 55.24    | 91.48             | -36.24   |
