@@ -100,7 +100,7 @@ On Task 1 of the SIGMORPHON 2016 shared task:
 
 | Language  | Accuracy | Winning system[1] | Relative | 
 ------------|----------|-------------------|----------|
-| Arabic    | 00.00    | 95.47             | -0.00    |
+| Arabic    | 90.59    | 95.47             | -4.88    |
 | Finnish   | 00.00    | 96.80             | -0.00    |
 | Georgian  | 97.51    | 98.50             | -0.99    |
 | German    | 94.48    | 95.80             | -1.32    |
