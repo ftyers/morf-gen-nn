@@ -105,7 +105,7 @@ On Task 1 of the SIGMORPHON 2016 shared task:
 | Georgian  | 97.51    | 98.50             | -0.99    |
 | German    | 94.48    | 95.80             | -1.32    |
 | Hungarian | 98.99    | 99.30             | -0.31    |
-| Maltese   | 00.00    | 88.99             | -0.00    |
+| Maltese   | 85.28    | 88.99             | -3.71    |
 | Navajo    | 55.24    | 91.48             | -36.24   |
 | Russian   | 88.74    | 91.46             | -2.72    |
 | Spanish   | 98.50    | 98.84             | -0.34    |
