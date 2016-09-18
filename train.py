@@ -99,7 +99,7 @@ class MorphGen(Initializable): #{
 		# No idea what this is doing, but otherwise "allocated" is not set
 		super(MorphGen, self).__init__(self)
 
-		# The encoder 
+		# The encoder, would changing 'dim' here make the char embeddings bigger?
 		encoder = Bidirectional(SimpleRecurrent(dim=dimen, activation=Tanh()))
 
 		# What is this doing ? 
