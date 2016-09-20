@@ -118,9 +118,12 @@ On Task 1 of the SIGMORPHON 2016 shared task:
 Ideas to improve performance:
 
 * Use an ensemble of five models (like in the MED system)
-* Use character embeddings
+* Use pretrained, or bigger character embeddings
 
 ## References 
 
 1. Kann, K. and Schütze, H. (2016) "MED: The LMU system for the SIGMORPHON 2016 shared task on morphological reinflection". _Proceedings of the 2016 Meeting of SIGMORPHON_, Berlin, Germany. Association for Computational Linguistics
 
+## Related code
+
+* (Robert Östling's system)[https://github.com/robertostling/sigmorphon2016-system]
